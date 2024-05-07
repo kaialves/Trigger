@@ -33,5 +33,39 @@ select * from Filmes;
 
 APÓS A EXECUÇÃO DO PRIMEIRO CÓDIGO REALIZE O SEGUNDO EXEMPLO. FAÇA AS ETAPAS INDICADAS DO SEGUNDO EXEMPLO. VEJA OS RESULTADOS OBTIDOS A CADA TAREFA REALIZADA E TIRE PRINT’S DOS RESULTADOS.
 `
+delimiter $
+create trigger chk_minutos before insert on Filmes
+for each row
+begin
+if new.minutos <0 then
+-- Lançar erro 
+signal sqlstate '45000' 
+set message_text = "Valor inválido para minutos",
+mysql_errno = 2022;
+end if;
+end$
+delimiter ;
+
+create table Log_delections (
+id int primary key auto_increment,
+titulo varchar(60),
+quando datetime,
+quem varchar(40)
+);
+
+delimiter $
+create trigger log_deletions after delete on Filmes
+for each row
+begin
+insert into Log_delections values (null, old.titulo, sysdate(), user());
+	end$
+            delimiter ;
+            
+DELETE FROM Filmes WHERE id = 1;
+DELETE FROM Filmes WHERE id = 7;
+DELETE FROM Filmes WHERE id = 3;
+
+select * from log_delections;           
 
 `
+<img src="https://github.com/kaialves/Trigger/blob/exemplo-1/log_delete.png" alt="Tabela de filmes">

@@ -28,6 +28,7 @@ insert into Filmes (titulo, minutos) values ("Metropole", 0);
 
 select * from Filmes; 
 `
+( https://github.com/kaialves/Trigger/blob/exemplo-1/Screenshot_120.png )
 
 APÓS A EXECUÇÃO DO PRIMEIRO CÓDIGO REALIZE O SEGUNDO EXEMPLO. FAÇA AS ETAPAS INDICADAS DO SEGUNDO EXEMPLO. VEJA OS RESULTADOS OBTIDOS A CADA TAREFA REALIZADA E TIRE PRINT’S DOS RESULTADOS.
 `
